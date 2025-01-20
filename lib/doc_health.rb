@@ -4,5 +4,8 @@ require_relative "doc_health/version"
 
 module DocHealth
   class Error < StandardError; end
-  # Your code goes here...
+
+  def self.hello_world
+    "Here's your doc health report!"
+  end
 end
