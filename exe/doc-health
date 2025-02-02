@@ -2,4 +2,5 @@
 # frozen_string_literal: true
 
 require "doc_health"
-puts DocHealth.hello_world
+
+DocHealth.health_report

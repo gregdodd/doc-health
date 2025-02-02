@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 require_relative "doc_health/version"
+require_relative "doc_health/cli"
+require_relative "doc_health/report"
 
 module DocHealth
   class Error < StandardError; end
 
-  def self.hello_world
-    "Here's your doc health report!"
+  def self.health_report
+    options = DocHealth::CLI.options
+    Report.new(options).generate
   end
 end
