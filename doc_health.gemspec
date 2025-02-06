@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
+  spec.add_dependency "csv"
   spec.add_dependency "git", "~> 2.3"
   spec.add_dependency "terminal-table", "~> 4.0"
 

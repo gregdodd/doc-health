@@ -7,7 +7,14 @@ class TestDocHealth < Minitest::Test
     refute_nil ::DocHealth::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_cli_options
+    options = DocHealth::CLI.options
+    assert_instance_of Hash, options
+  end
+
+  def test_git_file_commit_author
+    git = DocHealth::Git.new(Dir.pwd)
+    rows = git.file_commit_author
+    assert_instance_of Array, rows
   end
 end

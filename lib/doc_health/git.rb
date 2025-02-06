@@ -11,15 +11,26 @@ module DocHealth
       @path = path
     end
 
-    def file_and_last_commit
+    def file_commit_author
       Dir.glob("#{path}**/*.md").map do |file|
         est_time = last_commit_date(file)
-        [file, est_time]
+        author = last_commit_author(file)
+        [file, est_time, author]
       end
     end
 
     def last_commit_date(file)
-      @git.log(1).object(file).first.date.getlocal("-05:00").strftime("%Y-%m-%d %I:%M %p")
+      gitlog = @git.log(1).object(file).first
+      return "N/A" unless gitlog
+
+      gitlog.date.getlocal("-05:00").strftime("%Y-%m-%d %I:%M %p")
+    end
+
+    def last_commit_author(file)
+      gitlog = @git.log(1).object(file).first
+      return "N/A" unless gitlog
+
+      @git.log(1).object(file).first.author.name
     end
   end
 end
